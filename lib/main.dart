@@ -2,11 +2,9 @@ import 'dart:ffi';
 
 import 'package:AOG/widgets/loading-button.widget.dart';
 import 'package:AOG/widgets/logo.widget.dart';
-import 'package:AOG/widgets/success.widget.dart';
+import 'package:AOG/widgets/submit-form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
-
-import 'widgets/input.widget.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,21 +33,13 @@ class HomePage extends StatelessWidget {
       body: ListView(
         children: [
           Logo(),
-          Success(),
-          Input(
-            label: "Gasolina",
-            ctrl: _gasCtrl,
-          ),
-          Input(
-            label: "Álcool",
-            ctrl: _alcCtrl,
-          ),
-          LoadingButton(
+          // Success(),
+          SubmitForm(
+            gasCtrl: _gasCtrl,
+            alcCtrl: _alcCtrl,
             busy: false,
-            invert: false,
-            fn: () => {},
-            text: "CALCULAR",
-          ),
+            submitFn: () => {},
+          )
         ],
       ),
     );
