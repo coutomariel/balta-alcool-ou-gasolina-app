@@ -10,35 +10,38 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Color _color = Colors.purple;
   var _gasCtrl = new MoneyMaskedTextController();
-
   var _alcCtrl = new MoneyMaskedTextController();
-
   var _busy = false;
-
   var _completed = false;
-
   var _resultText = "Compensa utilizar álcool";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: ListView(
-        children: [
-          Logo(),
-          _completed
-              ? Success(
-                  result: _resultText,
-                  reset: reset,
-                )
-              : SubmitForm(
-                  gasCtrl: _gasCtrl,
-                  alcCtrl: _alcCtrl,
-                  busy: _busy,
-                  submitFn: calculate,
-                )
-        ],
+      body: AnimatedContainer(
+        color: _color,
+        duration: Duration(
+          milliseconds: 1200,
+        ),
+        child: ListView(
+          children: [
+            Logo(),
+            _completed
+                ? Success(
+                    result: _resultText,
+                    reset: reset,
+                  )
+                : SubmitForm(
+                    gasCtrl: _gasCtrl,
+                    alcCtrl: _alcCtrl,
+                    busy: _busy,
+                    submitFn: calculate,
+                  )
+          ],
+        ),
       ),
     );
   }
@@ -52,12 +55,13 @@ class _HomePageState extends State<HomePage> {
     double res = alc / gas;
 
     setState(() {
+      _color = Colors.purpleAccent;
       _completed = false;
       _busy = true;
     });
 
     return new Future.delayed(
-      const Duration(seconds: 3),
+      const Duration(seconds: 1),
         () => {
           setState((){
             if(res > 0.7){
@@ -74,6 +78,7 @@ class _HomePageState extends State<HomePage> {
 
   reset() {
     setState(() {
+      _color = Colors.purple;
       _alcCtrl = new MoneyMaskedTextController();
       _gasCtrl = new MoneyMaskedTextController();
       _completed = false;
