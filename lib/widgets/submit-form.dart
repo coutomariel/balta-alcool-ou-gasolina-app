@@ -10,11 +10,12 @@ class SubmitForm extends StatelessWidget {
   var busy = false;
   Function submitFn;
 
-  SubmitForm(
-      {@required this.gasCtrl,
-      @required this.alcCtrl,
-      @required this.busy,
-      @required this.submitFn});
+  SubmitForm({
+    @required this.gasCtrl,
+    @required this.alcCtrl,
+    @required this.busy,
+    @required this.submitFn,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +42,9 @@ class SubmitForm extends StatelessWidget {
           height: 25,
         ),
         LoadingButton(
-          busy: false,
+          busy: busy,
           invert: false,
-          fn: () => {},
+          fn: submitFn,
           text: "CALCULAR",
         ),
       ],

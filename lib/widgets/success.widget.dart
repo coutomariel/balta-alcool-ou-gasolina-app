@@ -3,6 +3,14 @@ import 'package:flutter/material.dart';
 import 'loading-button.widget.dart';
 
 class Success extends StatelessWidget {
+  var result = "";
+  Function reset;
+
+  Success({
+    @required this.result,
+    @required this.reset,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +25,7 @@ class Success extends StatelessWidget {
             height: 50,
           ),
           Text(
-            "Compensa utilizar álcool",
+            result,
             style: TextStyle(
               color: Theme.of(context).primaryColor,
               fontSize: 40,
@@ -31,8 +39,8 @@ class Success extends StatelessWidget {
           LoadingButton(
             busy: false,
             invert: true,
-            fn: () => {},
-            text: "CALCULAR",
+            fn: reset,
+            text: "CALCULAR NOVAMENTE",
           ),
         ],
       ),

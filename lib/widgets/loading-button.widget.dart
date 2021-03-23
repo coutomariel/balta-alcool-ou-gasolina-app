@@ -31,9 +31,7 @@ class LoadingButton extends StatelessWidget {
                 color: invert
                     ? Theme.of(context).primaryColor
                     : Colors.white.withOpacity(0.8),
-                borderRadius: BorderRadius.circular(
-                  60,
-                )),
+                borderRadius: BorderRadius.circular(60)),
             child: FlatButton(
               child: Text(
                 text,
